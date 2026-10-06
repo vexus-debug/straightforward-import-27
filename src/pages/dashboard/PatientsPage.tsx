@@ -187,7 +187,7 @@ export default function PatientsPage() {
                   </thead>
                   <tbody>
                     {filtered.map((p, i) => {
-                      const initials = `${p.first_name[0]}${p.last_name[0]}`.toUpperCase();
+                      const initials = `${p.first_name?.[0] ?? ""}${p.last_name?.[0] ?? ""}`.toUpperCase();
                       return (
                         <motion.tr
                           key={p.id}
@@ -216,7 +216,7 @@ export default function PatientsPage() {
                                   <a href={`tel:${p.phone}`} title="Call" className="text-secondary hover:text-secondary/80">
                                     <Phone className="h-3.5 w-3.5" />
                                   </a>
-                                  <a href={`https://wa.me/${p.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" title="WhatsApp" className="text-emerald-600 hover:text-emerald-500">
+                                  <a href={`https://wa.me/${(p.phone ?? "").replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" title="WhatsApp" className="text-emerald-600 hover:text-emerald-500">
                                     <MessageCircle className="h-3.5 w-3.5" />
                                   </a>
                                 </div>
@@ -291,7 +291,7 @@ export default function PatientsPage() {
                                       <a href={`tel:${p.phone}`}><Phone className="mr-2 h-3.5 w-3.5" />Call Patient</a>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
-                                      <a href={`https://wa.me/${p.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer"><MessageCircle className="mr-2 h-3.5 w-3.5" />WhatsApp</a>
+                                      <a href={`https://wa.me/${(p.phone ?? "").replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer"><MessageCircle className="mr-2 h-3.5 w-3.5" />WhatsApp</a>
                                     </DropdownMenuItem>
                                   </>
                                 )}
